@@ -10,7 +10,7 @@
     <button onclick="controlLED('off')">Turn OFF</button>
 
     <script>
-      const esp32Ip = "http://192.168.1.45"; // Reemplaza con la IP de tu ESP32
+      const esp32Ip = "https://4c60-179-37-6-182.ngrok-free.app"; // Reemplaza con la IP de tu ESP32
 
       function controlLED(state) {
         fetch(`${esp32Ip}/?led=${state}`)
