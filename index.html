@@ -1,3 +1,27 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>ESP32 LED Control</title>
+  </head>
+  <body>
+    <h1>ESP32 LED Control</h1>
+    <p>LED Control via Web</p>
+    <button onclick="controlLED('on')">Turn ON</button>
+    <button onclick="controlLED('off')">Turn OFF</button>
+
+    <script>
+      const esp32Ip = "http://192.168.1.45"; // Reemplaza con la IP de tu ESP32
+
+      function controlLED(state) {
+        fetch(`${esp32Ip}/?led=${state}`)
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,12 +34,13 @@
     <button onclick="controlLED('off')">Turn OFF</button>
 
     <script>
-      const esp32Ip = "https://1ee4-179-37-6-182.ngrok-free.app"; // Reemplaza con la IP de tu ESP32
+      const backendUrl = "https://backend-node-esp32.onrender.com"; // Reemplaza con la URL de tu backend en Render
 
       function controlLED(state) {
-        fetch(`${esp32Ip}/?led=${state}`)
+        console.log(`Sending request to turn ${state} the LED`);
+        fetch(`${backendUrl}/api/led/${state}`)
           .then((response) => response.text())
-          .then((data) => console.log(data))
+          .then((data) => console.log("Response from server:", data))
           .catch((error) => console.error("Error:", error));
       }
     </script>
