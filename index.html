@@ -22,7 +22,7 @@
   </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>ESP32 LED Control</title>
@@ -42,6 +42,112 @@
           .then((response) => response.text())
           .then((data) => console.log("Response from server:", data))
           .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESP32 LED Control</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      h1 {
+        color: #444;
+        margin-bottom: 20px;
+      }
+      .button {
+        padding: 15px 25px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        transition: background-color 0.3s;
+      }
+      .on {
+        background-color: #28a745;
+      }
+      .off {
+        background-color: #dc3545;
+      }
+      .button:hover {
+        opacity: 0.9;
+      }
+      .status {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 80%;
+        text-align: center;
+      }
+      .success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .info {
+        background-color: #cce5ff;
+        color: #004085;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ESP32 LED Control</h1>
+    <p>Control the LED via Web</p>
+    <button class="button on" onclick="controlLED('on')">Turn ON</button>
+    <button class="button off" onclick="controlLED('off')">Turn OFF</button>
+
+    <div id="status" class="status info">Awaiting action...</div>
+
+    <script>
+      const backendUrl = "https://<TU_SERVICIO_BACKEND>.onrender.com";
+
+      function controlLED(state) {
+        document.getElementById("status").className = "status info";
+        document.getElementById("status").innerText =
+          "Sending request to the server...";
+
+        fetch(`${backendUrl}/api/led/${state}`, {
+          method: "POST",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            console.log(data);
+            document.getElementById("status").className = "status success";
+            document.getElementById(
+              "status"
+            ).innerText = `LED is turned ${state}`;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("status").className = "status error";
+            document.getElementById("status").innerText =
+              "Failed to communicate with the server";
+          });
       }
     </script>
   </body>
