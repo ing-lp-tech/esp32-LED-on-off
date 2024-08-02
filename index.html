@@ -116,7 +116,7 @@
     <button class="button on" onclick="controlLED('on')">Turn ON</button>
     <button class="button off" onclick="controlLED('off')">Turn OFF</button>
 
-    <div id="status" class="status info">Awaiting action...</div>
+    <div id="status" class="status info">Awaiting action render...</div>
 
     <script>
       const backendUrl = "https://backend-node-esp32.onrender.com";
@@ -128,6 +128,9 @@
 
         fetch(`${backendUrl}/api/led/${state}`, {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
           .then((response) => {
             if (!response.ok) {
