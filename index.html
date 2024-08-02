@@ -46,7 +46,6 @@
     </script>
   </body>
 </html> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -116,10 +115,10 @@
     <button class="button on" onclick="controlLED('on')">Turn ON</button>
     <button class="button off" onclick="controlLED('off')">Turn OFF</button>
 
-    <div id="status" class="status info">Awaiting action render...</div>
+    <div id="status" class="status info">Awaiting action...</div>
 
     <script>
-      const backendUrl = "https://backend-node-esp32.onrender.com";
+      const backendUrl = "backend-node-esp32.onrender.com";
 
       function controlLED(state) {
         document.getElementById("status").className = "status info";
