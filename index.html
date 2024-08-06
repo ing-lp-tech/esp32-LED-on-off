@@ -1,51 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>ESP32 LED Control</title>
-  </head>
-  <body>
-    <h1>ESP32 LED Control</h1>
-    <p>LED Control via Web</p>
-    <button onclick="controlLED('on')">Turn ON</button>
-    <button onclick="controlLED('off')">Turn OFF</button>
-
-    <script>
-      const esp32Ip = "http://192.168.1.45"; // Reemplaza con la IP de tu ESP32
-
-      function controlLED(state) {
-        fetch(`${esp32Ip}/?led=${state}`)
-          .then((response) => response.text())
-          .then((data) => console.log(data))
-          .catch((error) => console.error("Error:", error));
-      }
-    </script>
-  </body>
-</html> -->
-
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>ESP32 LED Control</title>
-  </head>
-  <body>
-    <h1>ESP32 LED Control</h1>
-    <p>LED Control via Web</p>
-    <button onclick="controlLED('on')">Turn ON</button>
-    <button onclick="controlLED('off')">Turn OFF</button>
-
-    <script>
-      const backendUrl = "https://backend-node-esp32.onrender.com"; // Reemplaza con la URL de tu backend en Render
-
-      function controlLED(state) {
-        console.log(`Sending request to turn ${state} the LED`);
-        fetch(`${backendUrl}/api/led/${state}`)
-          .then((response) => response.text())
-          .then((data) => console.log("Response from server:", data))
-          .catch((error) => console.error("Error:", error));
-      }
-    </script>
-  </body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -118,7 +70,7 @@
     <div id="status" class="status info">Awaiting action...</div>
 
     <script>
-      const backendUrl = "backend-node-esp32.onrender.com";
+      const backendUrl = "http://localhost:3000"; // Cambia al servidor local
 
       function controlLED(state) {
         document.getElementById("status").className = "status info";
@@ -138,7 +90,7 @@
             return response.text();
           })
           .then((data) => {
-            console.log(data);
+            console.log("Server response:", data);
             document.getElementById("status").className = "status success";
             document.getElementById(
               "status"
